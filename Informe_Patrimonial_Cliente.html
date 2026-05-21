@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Informe de Planificación Patrimonial — Confidencial</title>
+  <style>
+    /* ── RESET & BASE ── */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size: 10.5pt; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f0ede8;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+
+    /* ── PÁGINA ── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 12mm auto;
+      background: #ffffff;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── BARRA LATERAL DECORATIVA ── */
+    .side-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6mm;
+      background: linear-gradient(180deg, #1a2744 0%, #2c4a7c 50%, #1a2744 100%);
+    }
+
+    /* ── CONTENIDO ── */
+    .content { margin-left: 6mm; padding: 14mm 14mm 12mm 16mm; }
+
+    /* ── PORTADA ── */
+    .cover {
+      min-height: 297mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 8mm;
+      border-bottom: 0.3mm solid #2c4a7c;
+    }
+    .firm-name {
+      font-family: 'Georgia', serif;
+      font-size: 13pt;
+      font-weight: bold;
+      color: #1a2744;
+      letter-spacing: 0.5px;
+    }
+    .firm-sub {
+      font-size: 8pt;
+      color: #6b7280;
+      margin-top: 2px;
+      font-style: italic;
+    }
+    .confidential-badge {
+      background: #1a2744;
+      color: #ffffff;
+      font-size: 7pt;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .cover-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20mm 0;
+    }
+    .cover-eyebrow {
+      font-size: 8pt;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #2c4a7c;
+      margin-bottom: 6mm;
+      font-family: 'Arial', sans-serif;
+    }
+    .cover-title {
+      font-size: 26pt;
+      font-weight: bold;
+      color: #1a2744;
+      line-height: 1.2;
+      margin-bottom: 4mm;
+    }
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #2c4a7c;
+      margin-bottom: 10mm;
+      font-style: italic;
+    }
+    .cover-divider {
+      width: 20mm;
+      height: 0.8mm;
+      background: #2c4a7c;
+      margin-bottom: 10mm;
+    }
+    .cover-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      max-width: 130mm;
+    }
+    .cover-meta-item { }
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #9ca3af;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 1mm;
+    }
+    .cover-meta-value {
+      font-size: 10pt;
+      color: #1a2744;
+      font-weight: bold;
+    }
+
+    .cover-footer {
+      border-top: 0.3mm solid #e5e7eb;
+      padding-top: 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cover-footer-left { font-size: 7.5pt; color: #6b7280; }
+    .cover-footer-right { font-size: 7.5pt; color: #6b7280; text-align: right; }
+
+    /* ── PÁGINAS INTERNAS ── */
+    .inner-page {
+      min-height: 297mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 4mm;
+      border-bottom: 0.5mm solid #1a2744;
+      margin-bottom: 8mm;
+    }
+    .page-header-title {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #2c4a7c;
+      font-family: 'Arial', sans-serif;
+    }
+    .page-header-info {
+      font-size: 7.5pt;
+      color: #9ca3af;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .page-footer {
+      margin-top: auto;
+      padding-top: 5mm;
+      border-top: 0.3mm solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7pt;
+      color: #9ca3af;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* ── TIPOGRAFÍA ── */
+    .section-title {
+      font-size: 13pt;
+      font-weight: bold;
+      color: #1a2744;
+      margin-bottom: 4mm;
+      padding-bottom: 2mm;
+      border-bottom: 0.4mm solid #2c4a7c;
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+    .section-num {
+      background: #1a2744;
+      color: white;
+      font-size: 8pt;
+      font-family: 'Arial', sans-serif;
+      width: 6mm; height: 6mm;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    .subsection-title {
+      font-size: 10pt;
+      font-weight: bold;
+      color: #2c4a7c;
+      margin: 5mm 0 3mm;
+      font-family: 'Arial', sans-serif;
+    }
+    p { margin-bottom: 3mm; font-size: 10pt; }
+    .text-muted { color: #6b7280; font-size: 9pt; font-style: italic; }
+
+    /* ── TABLAS ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      margin-bottom: 5mm;
+      font-family: 'Arial', sans-serif;
+    }
+    thead th {
+      background: #1a2744;
+      color: #ffffff;
+      padding: 3mm 4mm;
+      text-align: left;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+    thead th.tr { text-align: right; }
+    tbody td {
+      padding: 2.5mm 4mm;
+      border-bottom: 0.2mm solid #e5e7eb;
+      vertical-align: top;
+    }
+    tbody td.tr { text-align: right; }
+    tbody td.tb { font-weight: bold; }
+    tbody tr:nth-child(even) { background: #f9fafb; }
+    tbody tr.total-row td {
+      background: #1a2744;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+    tbody tr.subtotal-row td {
+      background: #e8edf5;
+      font-weight: bold;
+      border-top: 0.4mm solid #2c4a7c;
+    }
+
+    /* ── TARJETAS KPI ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3mm; margin-bottom: 6mm; }
+    .kpi-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 3mm; margin-bottom: 6mm; }
+    .kpi-card {
+      border: 0.3mm solid #e5e7eb;
+      border-radius: 2px;
+      padding: 4mm;
+      background: #f9fafb;
+    }
+    .kpi-card.accent { background: #1a2744; border-color: #1a2744; }
+    .kpi-label { font-size: 7pt; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; font-family:'Arial',sans-serif; margin-bottom: 1.5mm; }
+    .kpi-card.accent .kpi-label { color: #93c5fd; }
+    .kpi-value { font-size: 14pt; font-weight: bold; color: #1a2744; }
+    .kpi-card.accent .kpi-value { color: #ffffff; }
+    .kpi-sub { font-size: 7.5pt; color: #6b7280; margin-top: 1mm; font-family:'Arial',sans-serif; }
+    .kpi-card.accent .kpi-sub { color: #93c5fd; }
+
+    /* ── ALLOCATION BAR ── */
+    .alloc-row { margin-bottom: 3mm; }
+    .alloc-top { display:flex; justify-content:space-between; margin-bottom:1.2mm; font-size:9pt; font-family:'Arial',sans-serif; }
+    .alloc-name { color:#1a2744; font-weight:600; display:flex;align-items:center;gap:2mm; }
+    .alloc-vals { color:#6b7280; }
+    .alloc-track { height:4mm; background:#e5e7eb; border-radius:1px; overflow:hidden; }
+    .alloc-fill { height:100%; }
+
+    /* ── ESCENARIOS ── */
+    .scenario-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-bottom:5mm; }
+    .scenario-card { border:0.4mm solid; border-radius:2px; padding:4mm; text-align:center; }
+    .scenario-card.cons { border-color:#d97706; background:#fffbeb; }
+    .scenario-card.base { border-color:#2c4a7c; background:#eff6ff; }
+    .scenario-card.bull { border-color:#16a34a; background:#f0fdf4; }
+    .scenario-name { font-size:7.5pt; font-weight:bold; text-transform:uppercase; letter-spacing:1px; font-family:'Arial',sans-serif; margin-bottom:2mm; }
+    .scenario-card.cons .scenario-name { color:#d97706; }
+    .scenario-card.base .scenario-name { color:#2c4a7c; }
+    .scenario-card.bull .scenario-name { color:#16a34a; }
+    .scenario-value { font-size:15pt; font-weight:bold; margin-bottom:1mm; }
+    .scenario-card.cons .scenario-value { color:#92400e; }
+    .scenario-card.base .scenario-value { color:#1a2744; }
+    .scenario-card.bull .scenario-value { color:#14532d; }
+    .scenario-detail { font-size:8pt; color:#6b7280; font-family:'Arial',sans-serif; }
+
+    /* ── BUCKET ── */
+    .bucket-bar-wrap { margin-bottom:5mm; }
+    .bucket-bar { height:10mm; display:flex; border-radius:1px; overflow:hidden; margin-bottom:2mm; }
+    .bucket-seg { display:flex; align-items:center; justify-content:center; font-size:7.5pt; font-weight:bold; color:white; font-family:'Arial',sans-serif; }
+    .bucket-legend { display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; }
+    .bucket-item { display:flex; align-items:flex-start; gap:2mm; font-size:8.5pt; font-family:'Arial',sans-serif; }
+    .bucket-dot { width:4mm; height:4mm; border-radius:1px; flex-shrink:0; margin-top:0.5mm; }
+    .bucket-item-label { font-weight:bold; color:#1a2744; }
+    .bucket-item-sub { color:#6b7280; font-size:7.5pt; }
+
+    /* ── ESTRATEGIA SUCESORIA ── */
+    .suc-row {
+      display:flex; gap:3mm; margin-bottom:3mm;
+      border:0.3mm solid #e5e7eb; border-radius:2px;
+      padding:3mm 4mm; background:#f9fafb;
+    }
+    .suc-icon { font-size:14pt; flex-shrink:0; width:8mm; text-align:center; }
+    .suc-body {}
+    .suc-title { font-size:9.5pt; font-weight:bold; color:#1a2744; margin-bottom:1mm; font-family:'Arial',sans-serif; }
+    .suc-desc { font-size:8.5pt; color:#374151; }
+    .suc-ahorro { font-size:8pt; color:#16a34a; font-weight:bold; font-family:'Arial',sans-serif; margin-top:1mm; }
+
+    /* ── RECOMENDACIÓN ── */
+    .rec-box {
+      border-left: 1.5mm solid #2c4a7c;
+      padding: 3mm 4mm;
+      background: #eff6ff;
+      margin-bottom: 3mm;
+      font-size: 9.5pt;
+    }
+    .rec-title { font-weight:bold; color:#1a2744; margin-bottom:1mm; font-family:'Arial',sans-serif; font-size:9.5pt; }
+
+    /* ── ALERTA ── */
+    .alert-box {
+      border:0.3mm solid #d97706;
+      background:#fffbeb;
+      padding:3mm 4mm;
+      margin-bottom:3mm;
+      border-radius:2px;
+      font-size:9pt;
+      color:#92400e;
+    }
+    .success-box {
+      border:0.3mm solid #16a34a;
+      background:#f0fdf4;
+      padding:3mm 4mm;
+      margin-bottom:3mm;
+      border-radius:2px;
+      font-size:9pt;
+      color:#14532d;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; }
+      .page { margin:0; box-shadow:none; width:100%; }
+      .inner-page { page-break-after: always; }
+      .inner-page:last-child { page-break-after: avoid; }
+    }
+    @page { size: A4; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--                  PORTADA                       -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="side-bar"></div>
+  <div class="content cover">
+
+    <div class="cover-header">
+      <div>
+        <div class="firm-name">WEALTH ADVISORY GROUP</div>
+        <div class="firm-sub">Private Banking &amp; Wealth Management</div>
+      </div>
+      <div class="confidential-badge">Confidencial</div>
+    </div>
+
+    <div class="cover-main">
+      <div class="cover-eyebrow">Planificación Patrimonial Integral</div>
+      <div class="cover-title">Informe de Gestión<br>Patrimonial y Retiro</div>
+      <div class="cover-subtitle">Análisis, Proyecciones y Recomendaciones Estratégicas</div>
+      <div class="cover-divider"></div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Fecha del informe</div>
+          <div class="cover-meta-value">21 de mayo de 2026</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Perfil de riesgo</div>
+          <div class="cover-meta-value">Conservador</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Patrimonio analizado</div>
+          <div class="cover-meta-value">US$ 5.000.000</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Horizonte de retiro</div>
+          <div class="cover-meta-value">15 años (edad 65)</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Preparado por</div>
+          <div class="cover-meta-value">Asesor de Patrimonio</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Clasificación</div>
+          <div class="cover-meta-value">HNW — Alta Prioridad</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div class="cover-footer-left">
+        Este informe es de carácter estrictamente confidencial y ha sido preparado<br>
+        exclusivamente para uso del cliente identificado. No para distribución.
+      </div>
+      <div class="cover-footer-right">
+        Wealth Advisory Group<br>
+        www.wealthadvisory.cl &nbsp;|&nbsp; Mayo 2026
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--         PÁGINA 2 — RESUMEN EJECUTIVO          -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="side-bar"></div>
+  <div class="content inner-page">
+
+    <div class="page-header">
+      <div class="page-header-title">Resumen Ejecutivo</div>
+      <div class="page-header-info">Planificación Patrimonial Integral &nbsp;|&nbsp; Mayo 2026</div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-grid" style="margin-bottom:6mm;">
+      <div class="kpi-card accent">
+        <div class="kpi-label">Patrimonio Actual</div>
+        <div class="kpi-value">US$ 5,0M</div>
+        <div class="kpi-sub">Punto de partida del plan</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Ingresos Anuales Netos</div>
+        <div class="kpi-value">US$ 200K</div>
+        <div class="kpi-sub">Capacidad de ahorro: US$ 56K/año</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Horizonte de Inversión</div>
+        <div class="kpi-value">15 años</div>
+        <div class="kpi-sub">Retiro a los 65 años</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Gasto Mensual Retiro</div>
+        <div class="kpi-value">US$ 12K</div>
+        <div class="kpi-sub">US$ 144.000 anuales</div>
+      </div>
+    </div>
+
+    <!-- Resumen narrativo -->
+    <div class="section-title"><span class="section-num">1</span>Resumen Ejecutivo</div>
+
+    <p>El presente informe constituye el plan de gestión patrimonial integral elaborado para el cliente, con un horizonte de <strong>15 años</strong> hacia el retiro previsto a los 65 años de edad. El análisis parte de un patrimonio actual de <strong>US$ 5.000.000</strong>, ingresos anuales netos de US$ 200.000 y un gasto mensual de US$ 12.000, lo que genera una <strong>capacidad de ahorro anual de US$ 56.000</strong>.</p>
+
+    <p>El cliente ha sido clasificado con un <strong>perfil de riesgo conservador</strong>, lo que determina una asignación estratégica de activos (SAA) orientada a la preservación del capital con crecimiento moderado, priorizando renta fija de calidad y activos con baja volatilidad.</p>
+
+    <div class="success-box">
+      ✓ <strong>Situación patrimonial sólida:</strong> El patrimonio actual supera ampliamente el objetivo mínimo de retiro (US$ 3,6M bajo la Regla del 4%). En el escenario base, el cliente alcanzará un patrimonio de <strong>US$ 15,2M al retiro</strong>, permitiendo un gasto sostenible de hasta <strong>US$ 58.300/mes</strong> — 4,9 veces su gasto proyectado.
+    </div>
+
+    <div class="subsection-title">Conclusiones principales</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th>Situación</th>
+          <th>Evaluación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tb">Suficiencia patrimonial</td>
+          <td>Patrimonio 3,9x sobre el mínimo requerido para retiro</td>
+          <td style="color:#16a34a;font-weight:bold;">Excelente</td>
+        </tr>
+        <tr>
+          <td class="tb">Capacidad de ahorro</td>
+          <td>US$ 56.000/año — aporta US$ 840.000 adicionales en 15 años</td>
+          <td style="color:#16a34a;font-weight:bold;">Positivo</td>
+        </tr>
+        <tr>
+          <td class="tb">Asignación de activos</td>
+          <td>Requiere estructuración formal bajo perfil conservador</td>
+          <td style="color:#d97706;font-weight:bold;">Acción requerida</td>
+        </tr>
+        <tr>
+          <td class="tb">Planificación sucesoria</td>
+          <td>Sin estructura, impuesto potencial US$ 3,79M (25%)</td>
+          <td style="color:#dc2626;font-weight:bold;">Urgente</td>
+        </tr>
+        <tr>
+          <td class="tb">Duración del fondo retiro</td>
+          <td>El patrimonio cubre retiro por más de 50 años</td>
+          <td style="color:#16a34a;font-weight:bold;">Excelente</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="subsection-title">Próximos pasos recomendados</div>
+
+    <div class="rec-box">
+      <div class="rec-title">1. Estructurar la cartera bajo SAA conservadora</div>
+      Migrar hacia la asignación estratégica recomendada: 65% renta fija, 15% renta variable, 10% alternativos, 10% liquidez. Plazo: 30 días.
+    </div>
+    <div class="rec-box">
+      <div class="rec-title">2. Iniciar planificación sucesoria</div>
+      Evaluar constitución de Sociedad de Inversión (Holding) o Fideicomiso para optimizar el traspaso patrimonial y reducir impuesto a la herencia. Potencial ahorro: US$ 2,27M.
+    </div>
+    <div class="rec-box">
+      <div class="rec-title">3. Contratación de seguro de vida</div>
+      Cubrir necesidades de liquidez de herederos ante un eventual fallecimiento anticipado. Capital asegurado recomendado: US$ 2–3M.
+    </div>
+
+    <div class="page-footer">
+      <span>Wealth Advisory Group &nbsp;|&nbsp; Confidencial</span>
+      <span>Página 2</span>
+      <span>Planificación Patrimonial Integral — Mayo 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--      PÁGINA 3 — BALANCE Y ASIGNACIÓN          -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="side-bar"></div>
+  <div class="content inner-page">
+
+    <div class="page-header">
+      <div class="page-header-title">Balance Patrimonial y Asignación de Activos</div>
+      <div class="page-header-info">Planificación Patrimonial Integral &nbsp;|&nbsp; Mayo 2026</div>
+    </div>
+
+    <div class="section-title"><span class="section-num">2</span>Balance Patrimonial</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Categoría de Activo</th>
+          <th class="tr">Monto (US$)</th>
+          <th class="tr">% del Total</th>
+          <th>Observación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="4" style="background:#e8edf5;font-weight:bold;color:#1a2744;padding:2mm 4mm;font-family:'Arial',sans-serif;font-size:8.5pt;">ACTIVOS FINANCIEROS</td></tr>
+        <tr>
+          <td>Portafolio de inversiones</td>
+          <td class="tr">3.000.000</td>
+          <td class="tr">60,0%</td>
+          <td>Pendiente estructuración SAA</td>
+        </tr>
+        <tr>
+          <td>Depósitos a plazo</td>
+          <td class="tr">500.000</td>
+          <td class="tr">10,0%</td>
+          <td>Liquidez de corto plazo</td>
+        </tr>
+        <tr>
+          <td>Fondos mutuos / APV</td>
+          <td class="tr">300.000</td>
+          <td class="tr">6,0%</td>
+          <td>Vehículo previsional</td>
+        </tr>
+        <tr class="subtotal-row">
+          <td class="tb">Subtotal Activos Financieros</td>
+          <td class="tr tb">3.800.000</td>
+          <td class="tr tb">76,0%</td>
+          <td></td>
+        </tr>
+        <tr><td colspan="4" style="background:#e8edf5;font-weight:bold;color:#1a2744;padding:2mm 4mm;font-family:'Arial',sans-serif;font-size:8.5pt;">ACTIVOS INMOBILIARIOS</td></tr>
+        <tr>
+          <td>Propiedad habitacional principal</td>
+          <td class="tr">800.000</td>
+          <td class="tr">16,0%</td>
+          <td>Valor de mercado estimado</td>
+        </tr>
+        <tr>
+          <td>Inmuebles de inversión</td>
+          <td class="tr">300.000</td>
+          <td class="tr">6,0%</td>
+          <td>Generan renta pasiva</td>
+        </tr>
+        <tr class="subtotal-row">
+          <td class="tb">Subtotal Activos Inmobiliarios</td>
+          <td class="tr tb">1.100.000</td>
+          <td class="tr tb">22,0%</td>
+          <td></td>
+        </tr>
+        <tr><td colspan="4" style="background:#e8edf5;font-weight:bold;color:#1a2744;padding:2mm 4mm;font-family:'Arial',sans-serif;font-size:8.5pt;">OTROS ACTIVOS</td></tr>
+        <tr>
+          <td>AFP / Previsión</td>
+          <td class="tr">100.000</td>
+          <td class="tr">2,0%</td>
+          <td>Estimado saldo cuenta obligatoria</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL ACTIVOS</td>
+          <td class="tr">5.000.000</td>
+          <td class="tr">100%</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="margin-top:6mm;"><span class="section-num">3</span>Asignación Estratégica de Activos (SAA) — Perfil Conservador</div>
+
+    <p>En función del perfil de riesgo <strong>conservador</strong>, horizonte de 15 años y objetivo de preservación de capital con crecimiento moderado, se recomienda la siguiente asignación estratégica sobre el patrimonio financiero invertible (<strong>US$ 5.000.000</strong>):</p>
+
+    <div style="margin:4mm 0 5mm;">
+      <div class="alloc-row">
+        <div class="alloc-top">
+          <span class="alloc-name"><span style="display:inline-block;width:3mm;height:3mm;background:#1a2744;border-radius:1px;"></span>Renta Fija (Bonos soberanos, corporativos grado inv.)</span>
+          <span class="alloc-vals"><strong>65%</strong> &nbsp;·&nbsp; US$ 3.250.000</span>
+        </div>
+        <div class="alloc-track"><div class="alloc-fill" style="width:65%;background:#1a2744;"></div></div>
+      </div>
+      <div class="alloc-row">
+        <div class="alloc-top">
+          <span class="alloc-name"><span style="display:inline-block;width:3mm;height:3mm;background:#2c4a7c;border-radius:1px;"></span>Renta Variable (Acciones diversificadas, ETFs globales)</span>
+          <span class="alloc-vals"><strong>15%</strong> &nbsp;·&nbsp; US$ 750.000</span>
+        </div>
+        <div class="alloc-track"><div class="alloc-fill" style="width:15%;background:#2c4a7c;"></div></div>
+      </div>
+      <div class="alloc-row">
+        <div class="alloc-top">
+          <span class="alloc-name"><span style="display:inline-block;width:3mm;height:3mm;background:#4a7cb5;border-radius:1px;"></span>Alternativos (Real estate, infraestructura, fondos)</span>
+          <span class="alloc-vals"><strong>10%</strong> &nbsp;·&nbsp; US$ 500.000</span>
+        </div>
+        <div class="alloc-track"><div class="alloc-fill" style="width:10%;background:#4a7cb5;"></div></div>
+      </div>
+      <div class="alloc-row">
+        <div class="alloc-top">
+          <span class="alloc-name"><span style="display:inline-block;width:3mm;height:3mm;background:#93c5fd;border-radius:1px;"></span>Liquidez (Money market, depósitos corto plazo)</span>
+          <span class="alloc-vals"><strong>10%</strong> &nbsp;·&nbsp; US$ 500.000</span>
+        </div>
+        <div class="alloc-track"><div class="alloc-fill" style="width:10%;background:#93c5fd;"></div></div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Clase de Activo</th>
+          <th class="tr">Peso SAA</th>
+          <th class="tr">Monto US$</th>
+          <th class="tr">Retorno Esp. Anual</th>
+          <th>Instrumentos Recomendados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tb">Renta Fija</td>
+          <td class="tr">65%</td>
+          <td class="tr">3.250.000</td>
+          <td class="tr">UF+2,5% / 5,5% nom.</td>
+          <td>Bonos BCCh, BTP Chile, corporativos IG, fondos renta fija</td>
+        </tr>
+        <tr>
+          <td class="tb">Renta Variable</td>
+          <td class="tr">15%</td>
+          <td class="tr">750.000</td>
+          <td class="tr">9,0% nominal</td>
+          <td>ETFs S&amp;P 500 (SPY), MSCI World, IPSA diversificado</td>
+        </tr>
+        <tr>
+          <td class="tb">Alternativos</td>
+          <td class="tr">10%</td>
+          <td class="tr">500.000</td>
+          <td class="tr">7,0% anual</td>
+          <td>Fondos inmobiliarios, infraestructura, deuda privada</td>
+        </tr>
+        <tr>
+          <td class="tb">Liquidez</td>
+          <td class="tr">10%</td>
+          <td class="tr">500.000</td>
+          <td class="tr">4,0% nominal</td>
+          <td>Fondos money market, DAP 30-90 días, cuenta corriente remunerada</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL PORTAFOLIO</td>
+          <td class="tr">100%</td>
+          <td class="tr">5.000.000</td>
+          <td class="tr">~6,0% anual est.</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert-box" style="margin-top:3mm;">
+      ⚠ <strong>Retorno esperado portafolio conservador:</strong> ~6,0% anual nominal (~3,0% real descontada inflación). Este retorno es inferior al potencial de un perfil moderado (~7,5%) pero ofrece menor volatilidad y mejor protección del capital en escenarios adversos.
+    </div>
+
+    <div class="page-footer">
+      <span>Wealth Advisory Group &nbsp;|&nbsp; Confidencial</span>
+      <span>Página 3</span>
+      <span>Planificación Patrimonial Integral — Mayo 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--     PÁGINA 4 — PROYECCIONES Y RETIRO          -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="side-bar"></div>
+  <div class="content inner-page">
+
+    <div class="page-header">
+      <div class="page-header-title">Proyecciones Patrimoniales y Planificación de Retiro</div>
+      <div class="page-header-info">Planificación Patrimonial Integral &nbsp;|&nbsp; Mayo 2026</div>
+    </div>
+
+    <div class="section-title"><span class="section-num">4</span>Proyección Patrimonial — Tres Escenarios</div>
+
+    <p>Las proyecciones contemplan el patrimonio inicial de US$ 5.000.000 más aportes anuales de US$ 56.000 (capacidad de ahorro neta), a lo largo de 15 años bajo distintas hipótesis de retorno. Se asume una inflación anual del 3%.</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-card cons">
+        <div class="scenario-name">Escenario Conservador</div>
+        <div class="scenario-value">US$ 10,84M</div>
+        <div class="scenario-detail">Retorno 4,5% anual nominal<br>Real (inflación): US$ 6,96M<br>CAGR efectivo: +5,2%</div>
+      </div>
+      <div class="scenario-card base">
+        <div class="scenario-name">Escenario Base ★</div>
+        <div class="scenario-value">US$ 15,20M</div>
+        <div class="scenario-detail">Retorno 7,0% anual nominal<br>Real (inflación): US$ 9,76M<br>CAGR efectivo: +7,7%</div>
+      </div>
+      <div class="scenario-card bull">
+        <div class="scenario-name">Escenario Optimista</div>
+        <div class="scenario-value">US$ 22,67M</div>
+        <div class="scenario-detail">Retorno 10,0% anual nominal<br>Real (inflación): US$ 14,55M<br>CAGR efectivo: +10,5%</div>
+      </div>
+    </div>
+
+    <div class="subsection-title">Hitos Patrimoniales — Escenario Base (7% anual)</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Año</th>
+          <th>Edad</th>
+          <th class="tr">Valor Nominal</th>
+          <th class="tr">Valor Real (2026)</th>
+          <th class="tr">Rendimiento Anual</th>
+          <th class="tr">Aporte Acumulado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="tb">Año 1</td><td>51</td><td class="tr">US$ 5.416.000</td><td class="tr">US$ 5.257.000</td><td class="tr">US$ 360.000</td><td class="tr">US$ 56.000</td></tr>
+        <tr><td class="tb">Año 3</td><td>53</td><td class="tr">US$ 6.324.000</td><td class="tr">US$ 5.790.000</td><td class="tr">US$ 428.000</td><td class="tr">US$ 168.000</td></tr>
+        <tr><td class="tb">Año 5</td><td>55</td><td class="tr">US$ 7.328.000</td><td class="tr">US$ 6.326.000</td><td class="tr">US$ 504.000</td><td class="tr">US$ 280.000</td></tr>
+        <tr><td class="tb">Año 10</td><td>60</td><td class="tr">US$ 10.610.000</td><td class="tr">US$ 7.895.000</td><td class="tr">US$ 733.000</td><td class="tr">US$ 560.000</td></tr>
+        <tr class="subtotal-row"><td class="tb">Año 15 ★ RETIRO</td><td><strong>65</strong></td><td class="tr"><strong>US$ 15.200.000</strong></td><td class="tr"><strong>US$ 9.760.000</strong></td><td class="tr">US$ 1.043.000</td><td class="tr">US$ 840.000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title" style="margin-top:6mm;"><span class="section-num">5</span>Planificación de Retiro</div>
+
+    <div class="kpi-grid-3">
+      <div class="kpi-card accent">
+        <div class="kpi-label">Patrimonio al Retiro (base)</div>
+        <div class="kpi-value">US$ 15,2M</div>
+        <div class="kpi-sub">4,2x el mínimo requerido</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Retiro Sostenible Máximo</div>
+        <div class="kpi-value">US$ 58.300/mes</div>
+        <div class="kpi-sub">El cliente necesita solo US$ 12K/mes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Duración Estimada del Fondo</div>
+        <div class="kpi-value">+50 años</div>
+        <div class="kpi-sub">Sin riesgo de agotamiento</div>
+      </div>
+    </div>
+
+    <div class="success-box">
+      ✓ <strong>Superávit patrimonial amplio:</strong> Con un gasto mensual de US$ 12.000 y un patrimonio proyectado de US$ 15,2M, el cliente posee 4,9 veces más de lo necesario bajo la Regla del 4%. El fondo de retiro cubre holgadamente más de 50 años, incluso en el escenario conservador (US$ 10,84M → 30+ años).
+    </div>
+
+    <div class="subsection-title">Estrategia de Distribución en Retiro — Método de Buckets</div>
+    <p>Se recomienda implementar la estrategia de "Tres Buckets" para gestionar el flujo de caja durante el retiro, separando el patrimonio por horizonte temporal y tolerancia al riesgo:</p>
+
+    <div class="bucket-bar-wrap">
+      <div class="bucket-bar">
+        <div class="bucket-seg" style="width:2.8%;background:#1a2744;">B1</div>
+        <div class="bucket-seg" style="width:6.6%;background:#2c4a7c;">B2</div>
+        <div class="bucket-seg" style="width:90.6%;background:#4a7cb5;">Bucket 3 — Crecimiento de Largo Plazo</div>
+      </div>
+      <div class="bucket-legend">
+        <div class="bucket-item">
+          <div class="bucket-dot" style="background:#1a2744;"></div>
+          <div>
+            <div class="bucket-item-label">Bucket 1 — US$ 432K (2,8%)</div>
+            <div class="bucket-item-sub">Horizonte: 0–3 años<br>Liquidez / Renta Fija Corta<br>Cubre gastos inmediatos sin vender activos</div>
+          </div>
+        </div>
+        <div class="bucket-item">
+          <div class="bucket-dot" style="background:#2c4a7c;"></div>
+          <div>
+            <div class="bucket-item-label">Bucket 2 — US$ 1,01M (6,6%)</div>
+            <div class="bucket-item-sub">Horizonte: 3–10 años<br>Bonos / Portafolio Balanceado<br>Recarga el Bucket 1 periódicamente</div>
+          </div>
+        </div>
+        <div class="bucket-item">
+          <div class="bucket-dot" style="background:#4a7cb5;"></div>
+          <div>
+            <div class="bucket-item-label">Bucket 3 — US$ 13,76M (90,5%)</div>
+            <div class="bucket-item-sub">Horizonte: 10+ años<br>Renta Variable + Alternativos<br>Motor de crecimiento y legado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Wealth Advisory Group &nbsp;|&nbsp; Confidencial</span>
+      <span>Página 4</span>
+      <span>Planificación Patrimonial Integral — Mayo 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--       PÁGINA 5 — SUCESIÓN Y CONCLUSIONES      -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="side-bar"></div>
+  <div class="content inner-page">
+
+    <div class="page-header">
+      <div class="page-header-title">Planificación Sucesoria y Recomendaciones</div>
+      <div class="page-header-info">Planificación Patrimonial Integral &nbsp;|&nbsp; Mayo 2026</div>
+    </div>
+
+    <div class="section-title"><span class="section-num">6</span>Planificación Sucesoria — Chile</div>
+
+    <p>En ausencia de estructuración patrimonial, el traspaso hereditario del patrimonio proyectado al retiro (US$ 15,2M) estaría sujeto al impuesto a la herencia vigente en Chile, con una tasa efectiva de hasta el <strong>25%</strong> para tramos superiores a UF 800. Esto representa un costo potencial de <strong>US$ 3,79M</strong> para los herederos.</p>
+
+    <div class="alert-box">
+      ⚠ <strong>Riesgo sucesorio no gestionado:</strong> Sin planificación, el impuesto a la herencia podría consumir hasta US$ 3,79M del patrimonio proyectado al retiro. Se recomienda iniciar la estructuración sucesoria de forma inmediata.
+    </div>
+
+    <div class="subsection-title">Estrategias de Optimización Patrimonial</div>
+
+    <div class="suc-row">
+      <div class="suc-icon">🏛</div>
+      <div class="suc-body">
+        <div class="suc-title">1. Sociedad de Inversión (Holding SpA)</div>
+        <div class="suc-desc">Centraliza los activos financieros e inmobiliarios bajo una entidad legal. Permite diferimiento de impuestos, separación patrimonial entre activos personales y de inversión, y facilita el traspaso de participaciones a herederos de forma planificada y gradual.</div>
+        <div class="suc-ahorro">Ahorro estimado en impuesto a la herencia: US$ 1.520.000</div>
+      </div>
+    </div>
+
+    <div class="suc-row">
+      <div class="suc-icon">📋</div>
+      <div class="suc-body">
+        <div class="suc-title">2. Fideicomiso / Trust Patrimonial</div>
+        <div class="suc-desc">Separa la titularidad legal y el beneficio económico de los activos. El patrimonio se traspasa directamente a los beneficiarios sin necesidad de proceso judicial (sucesión). Particularmente útil para activos en el exterior o con múltiples beneficiarios.</div>
+        <div class="suc-ahorro">Ahorro estimado en impuesto a la herencia: US$ 2.270.000</div>
+      </div>
+    </div>
+
+    <div class="suc-row">
+      <div class="suc-icon">🛡</div>
+      <div class="suc-body">
+        <div class="suc-title">3. Seguro de Vida con Valor de Rescate</div>
+        <div class="suc-desc">El capital asegurado se traspasa directamente a los beneficiarios fuera de la masa hereditaria, sin esperar el proceso de sucesión ni pagar impuesto a la herencia sobre dicho monto. Además, el componente de inversión genera rentabilidad con diferimiento tributario.</div>
+        <div class="suc-ahorro">Capital recomendado: US$ 2M–US$ 3M. Ahorro estimado: US$ 1.890.000</div>
+      </div>
+    </div>
+
+    <div class="suc-row">
+      <div class="suc-icon">🎁</div>
+      <div class="suc-body">
+        <div class="suc-title">4. Donaciones en Vida (Fraccionadas)</div>
+        <div class="suc-desc">Transferencias planificadas de activos a herederos durante la vida del cliente, aprovechando los tramos de menor tributación y exenciones disponibles. Requiere planificación de largo plazo y acuerdo familiar.</div>
+        <div class="suc-ahorro">Ahorro estimado acumulado: US$ 1.140.000</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:5mm;"><span class="section-num">7</span>Resumen de Recomendaciones Prioritarias</div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Prioridad</th>
+          <th>Acción</th>
+          <th>Plazo</th>
+          <th class="tr">Impacto Estimado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:#dc2626;font-weight:bold;">ALTA</td>
+          <td>Estructurar SAA conservadora — migrar portafolio</td>
+          <td>30 días</td>
+          <td class="tr">Retorno estable ~6% anual</td>
+        </tr>
+        <tr>
+          <td style="color:#dc2626;font-weight:bold;">ALTA</td>
+          <td>Constituir Sociedad de Inversión (Holding SpA)</td>
+          <td>60 días</td>
+          <td class="tr">Ahorro US$ 1.52M herencia</td>
+        </tr>
+        <tr>
+          <td style="color:#d97706;font-weight:bold;">MEDIA</td>
+          <td>Contratar seguro de vida — capital US$ 2–3M</td>
+          <td>90 días</td>
+          <td class="tr">Liquidez inmediata herederos</td>
+        </tr>
+        <tr>
+          <td style="color:#d97706;font-weight:bold;">MEDIA</td>
+          <td>Evaluar fideicomiso para activos en exterior</td>
+          <td>90 días</td>
+          <td class="tr">Ahorro US$ 2.27M herencia</td>
+        </tr>
+        <tr>
+          <td style="color:#16a34a;font-weight:bold;">NORMAL</td>
+          <td>Actualizar testamento y designar beneficiarios APV</td>
+          <td>60 días</td>
+          <td class="tr">Seguridad legal</td>
+        </tr>
+        <tr>
+          <td style="color:#16a34a;font-weight:bold;">NORMAL</td>
+          <td>Revisar régimen matrimonial y capitulaciones</td>
+          <td>120 días</td>
+          <td class="tr">Protección patrimonial</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Disclaimer -->
+    <div style="border:0.3mm solid #e5e7eb;padding:4mm;background:#f9fafb;margin-top:5mm;border-radius:2px;">
+      <div style="font-size:7.5pt;color:#6b7280;line-height:1.6;font-family:'Arial',sans-serif;">
+        <strong style="color:#374151;">AVISO LEGAL:</strong> Este informe ha sido preparado exclusivamente con fines informativos y de planificación orientativa para el cliente identificado. No constituye asesoría financiera, legal ni tributaria formal. Las proyecciones y cálculos se basan en supuestos de mercado que pueden diferir de los resultados reales. El cliente deberá consultar con asesores legales, tributarios y financieros calificados antes de implementar cualquier estrategia descrita en este documento. Wealth Advisory Group no asume responsabilidad por decisiones tomadas en base a este informe sin la debida consulta profesional especializada. Información elaborada con datos a mayo de 2026.
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>Wealth Advisory Group &nbsp;|&nbsp; Confidencial</span>
+      <span>Página 5</span>
+      <span>Planificación Patrimonial Integral — Mayo 2026</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
